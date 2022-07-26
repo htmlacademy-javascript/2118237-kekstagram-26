@@ -36,6 +36,7 @@ const COMMENTS = [
 
 
 const COMMENTS_COUNT = 50;
+const POSTS_COUNT = 25;
 const MIN_AVATAR_NUMBER = 1;
 const MAX_AVATAR_NUMBER = 6;
 const MIN_LIKE_NUMBER = 15;

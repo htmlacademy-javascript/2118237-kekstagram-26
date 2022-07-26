@@ -1,3 +1,4 @@
-import { createRandomPosts } from "./data";
-const POSTS_COUNT = 25;
-createRandomPosts(POSTS_COUNT);
+import { createRandomPosts, POSTS_COUNT } from "./data";
+import { renderPosts } from "./render-posts";
+
+renderPosts(createRandomPosts(POSTS_COUNT));
