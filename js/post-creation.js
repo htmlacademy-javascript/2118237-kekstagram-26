@@ -1,5 +1,7 @@
-import {checkIsEscPressed, checkStringMaxLength, showMessage} from './util.js';
+import { checkIsEscPressed, checkStringMaxLength, showMessage } from './util.js';
+import { sendData } from './api.js';
 
+let activeMessage;
 let currentEffect;
 const MAX_COMMENT_LENGTH = 140;
 const HASHTAG = /(^#[A-Za-zА-Яа-яЁё0-9]{1,19}\b\s?)((\b\s#[A-Za-zА-Яа-яЁё0-9]{1,19}\b\s?){1,4})?$/;
@@ -9,6 +11,10 @@ const STEP_SCALE = 25;
 const commentError = `Комментарий не должен быть длиннее ${MAX_COMMENT_LENGTH} символов`;
 const hashtagError = 'Поле имеет неверный формат';
 const duplicateHashtagError = 'Хештеги не должны быть одинаковыми';
+const successMessage = document.querySelector('#success').content.querySelector('.success');
+const errorMessage = document.querySelector('#error').content.querySelector('.error');
+const successButton = successMessage.querySelector('.success__button');
+const errorButton = errorMessage.querySelector('.error__button');
 
 const FILTER_TYPE = {
   NONE: 'none',
@@ -30,6 +36,7 @@ const FILTER_CSS_VALUE = {
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const uploadCancel = uploadForm.querySelector('.img-upload__cancel');
+const uploadSubmit = uploadForm.querySelector('.img-upload__submit');
 const textHashtags = uploadForm.querySelector('.text__hashtags');
 const textDescription = uploadForm.querySelector('.text__description');
 const uploadScale = uploadForm.querySelector('.img-upload__scale');
@@ -47,6 +54,18 @@ const pristine = new Pristine(uploadForm,
     errorTextParent: 'img-upload__field-wrapper',
     errorTextClass: 'text-error'
   });
+
+const closeMessage = () => {
+  document.body.removeChild(activeMessage);
+  window.removeEventListener('keydown', escapeKeydown, true);
+  window.removeEventListener('click', onClickMessageForm);
+};
+
+function onClickMessageForm (evt) {
+  if (evt.target === activeMessage){
+    closeMessage();
+  }
+}
 
 const validateComment = (value) => checkStringMaxLength(value, MAX_COMMENT_LENGTH);
 const validateHashtag = (value) => {
@@ -213,6 +232,41 @@ function escapeKeydown(evt) {
 
 function postSubmitting(evt) {
   evt.preventDefault();
+
+  if (pristine.validate()) {
+    uploadSubmit.disabled = true;
+    sendData(
+      () => {
+        closePostCreation();
+        showSuccessMessage();
+        uploadSubmit.disabled = false;
+      },
+      () => {
+        showErrorMessage();
+        uploadSubmit.disabled = false;
+      },
+
+      new FormData(evt.target)
+    );
+  }
 }
+
+const showSuccessMessage = () => {
+  activeMessage = successMessage;
+  document.body.appendChild(successMessage);
+
+  successButton.addEventListener('click', closeMessage, { once: true });
+  window.addEventListener('keydown', escapeKeydown);
+  window.addEventListener('click', onClickMessageForm);
+};
+
+const showErrorMessage = () => {
+  activeMessage = errorMessage;
+  document.body.appendChild(errorMessage);
+
+  errorButton.addEventListener('click', closeMessage, { once:true });
+  window.addEventListener('keydown', escapeKeydown);
+  window.addEventListener('click', onClickMessageForm);
+};
 
 uploadFile.addEventListener('change', createNewPost);
