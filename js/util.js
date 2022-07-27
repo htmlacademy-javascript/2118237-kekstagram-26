@@ -39,4 +39,12 @@ export const showMessage = (message) => {
 const ESC_KEYCODE = 27;
 const checkIsEscPressed = (evt) => evt.keyCode === ESC_KEYCODE;
 
+export const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 export { checkIsEscPressed, getRandomNumber, checkStringMaxLength, getRandomElementFromArray, getSeveralElementsFromArray };
