@@ -1,4 +1,4 @@
-import { getRandomNumber, checkCommentsMaxLength, getRandomElementFromArray, getSeveralElementsFromArray } from "./util";
+import { getRandomNumber, checkStringMaxLength, getRandomElementFromArray, getSeveralElementsFromArray } from "./util";
 
 const DESCRIPTIONS = [
     'Это я в отпуске',

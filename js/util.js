@@ -12,7 +12,7 @@ function getRandomElementFromArray(array) {
     array[getRandomNumber(0, array.length - 1)];
 };
 
-function checkCommentsMaxLength(text, maxLength) {
+function checkStringMaxLength(text, maxLength) {
     return text.length <= maxLength;
 };
 
@@ -29,4 +29,4 @@ function getSeveralElementsFromArray(array, quantity) {
 const ESC_KEYCODE = 27;
 const checkIsEscPressed = (evt) => evt.keyCode === ESC_KEYCODE;
 
-export { checkIsEscPressed, getRandomNumber, checkCommentsMaxLength, getRandomElementFromArray, getSeveralElementsFromArray };
+export { checkIsEscPressed, getRandomNumber, checkStringMaxLength, getRandomElementFromArray, getSeveralElementsFromArray };
