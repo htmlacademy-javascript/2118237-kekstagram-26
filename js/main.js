@@ -1,13 +1,14 @@
-import { createRandomPosts, POSTS_COUNT } from "./data";
-import { renderPosts } from "./render-posts";
-import { createNewPost } from "./post-creation";
+import { bindPostClickListener, renderPosts } from './render-posts.js';
+import { getData } from './api.js';
+import { openBigPicture } from './big-picture-render.js';
+import './post-creation.js';
 
-const POSTS = createRandomPosts(POSTS_COUNT);
-renderPosts(POSTS);
-
-bindPostClickListener((postId) => {
-    const currentPost = POSTS.find((post) => post.id === postId);
-    openBigPicture(currentPost);
+getData((posts) => {
+  renderPosts(posts);
+  bindPostClickListener((postId) => {
+    const post = posts.find((post) => post.id == postId);
+    openBigPicture(post);
+  });
 });
 
-createNewPost();
+
