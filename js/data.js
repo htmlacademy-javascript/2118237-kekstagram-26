@@ -48,34 +48,32 @@ const MAX_COMMENT_NUMBER = 7;
 
 const createRandomComments = (commentsQuantity) => {
     const result = [];
-    for (let i = 1; i < commentsQuantity + 1; i++) {
+    commentsQuantity.forEach((element, idx) => {
         const randomCommentator = getRandomElementFromArray(COMMENTATOR_NAMES);
         const randomComment = getRandomElementFromArray(COMMENTS);
         result.push({
-            id: i,
-            avatar:
-                'img/avatar-${getRandomNumber(MIN_AVATAR_NUMBER,MAX_AVATAR_NUMBER)}.svg',
+            id: idx,
+            avatar: 'img/avatar-${getRandomNumber(MIN_AVATAR_NUMBER,MAX_AVATAR_NUMBER)}.svg',
             message: randomComment,
             name: randomCommentator
         });
-    }
+    });
     return result;
-
 };
 
 const createRandomPosts = (photosQuantity) => {
     const result = [];
     const commentsArray = createRandomComments(COMMENTS_COUNT)
-    for (let i = 1; 1 <= photosQuantity; i++) {
+    photosQuantity.forEach((element, idx) => {
         const commentsForPost = getRandomNumber(MIN_COMMENT_NUMBER, MAX_COMMENT_NUMBER); // quntity of comment for 1 post photo
         result.push({
-            id: i,
-            url: 'photos/{{${i}}}.jpg',
+            id: idx,
+            url: 'photos/{{${idx}}}.jpg',
             description: getRandomElementFromArray(DESCRIPTIONS),
             likes: getRandomNumber(MIN_LIKE_NUMBER, MAX_LIKE_NUMBER),
             comments: getSeveralElementsFromArray(commentsArray, commentsForPost)
         });
-    }
+    });
     return result;
 };
 

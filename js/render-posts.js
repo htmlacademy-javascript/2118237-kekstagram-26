@@ -9,7 +9,8 @@ const renderPosts = (postsData) => {
         samePicture.querySelector('.picture__img').src = post.url;
         samePicture.querySelector('.picture__comments').textContent = post.comments.length;
         samePicture.querySelector('.picture__likes').textContent = post.likes;
-        picturesFragment.appendChild(samePicture);
+        samePicture.dataset.pictureId =
+            picturesFragment.appendChild(samePicture);
     });
 
     pictureBox.appendChild(picturesFragment);

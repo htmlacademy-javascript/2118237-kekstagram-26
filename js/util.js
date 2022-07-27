@@ -16,14 +16,17 @@ function checkCommentsMaxLength(text, maxLength) {
     return text.length <= maxLength;
 };
 
-
-
 function getSeveralElementsFromArray(array, quantity) {
     const RANDOM_ELEMENTS = [];
-    for (let i = 0; i < quantity; i++) {
-        RANDOM_ELEMENTS[i] = getRandomElementFromArray(array);
-    }
+
+    quantity.forEach((element) => {
+        RANDOM_ELEMENTS.push(getRandomElementFromArray(array));
+    });
+
     return RANDOM_ELEMENTS;
 };
 
-export { getRandomNumber, checkCommentsMaxLength, getRandomElementFromArray, getSeveralElementsFromArray };
+const ESC_KEYCODE = 27;
+const checkIsEscPressed = (evt) => evt.keyCode === ESC_KEYCODE;
+
+export { checkIsEscPressed, getRandomNumber, checkCommentsMaxLength, getRandomElementFromArray, getSeveralElementsFromArray };
