@@ -1,4 +1,4 @@
-import { getRandomNumber, checkStringMaxLength, getRandomElementFromArray, getSeveralElementsFromArray } from './util.js';
+import { getRandomNumber, getRandomElementFromArray, getSeveralElementsFromArray } from './util.js';
 
 const DESCRIPTIONS = [
   'Это я в отпуске',
@@ -55,7 +55,7 @@ const createRandomComments = (commentsQuantity) => {
       message: randomComment,
       name: randomCommentator
     });
-  };
+  }
   return result;
 };
 
@@ -72,7 +72,7 @@ const createRandomPosts = (photosQuantity) => {
       likes: getRandomNumber(MIN_LIKE_NUMBER, MAX_LIKE_NUMBER),
       comments: getSeveralElementsFromArray(commentsArray, commentsForPost)
     });
-  };
+  }
   return result;
 };
 

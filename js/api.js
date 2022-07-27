@@ -11,6 +11,12 @@ export const getData = (onSuccess) => {
 
 export const sendData = (onSuccess, onFail, body) => {
   fetch('https://26.javascript.pages.academy/kekstagram',{method:'POST', body})
-    .then((response) => { response.ok ? onSuccess() : onFail() })
+    .then((response) => {
+      if (response.ok) {
+        onSuccess();
+      } else {
+        onFail();
+      }
+    })
     .catch(() => onFail());
 };

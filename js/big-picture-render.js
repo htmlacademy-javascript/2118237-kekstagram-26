@@ -63,7 +63,7 @@ const createComments = (comments) => {
           width="35" height="35">
        <p class="social__text">${comment.message}</p>
       </li>`;
-  })
+  });
   socialComments.innerHTML = allComments;
 };
 

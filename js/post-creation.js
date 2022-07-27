@@ -119,8 +119,9 @@ const getUpdateSlider = (min = 0, max  = 1, start = 1, step = 1, unit= '') => ({
   connect: 'lower',
   format: {
     to: (value) => {
-      if(Number.isInteger(value))
+      if(Number.isInteger(value)) {
         return `${value.toFixed(0)}${unit}`;
+      }
     },
     from: (value) => parseFloat(value.replace(unit, '')),
   }
@@ -230,6 +231,24 @@ function escapeKeydown(evt) {
   }
 }
 
+const showSuccessMessage = () => {
+  activeMessage = successMessage;
+  document.body.appendChild(successMessage);
+
+  successButton.addEventListener('click', closeMessage, { once: true });
+  window.addEventListener('keydown', escapeKeydown);
+  window.addEventListener('click', onClickMessageForm);
+};
+
+const showErrorMessage = () => {
+  activeMessage = errorMessage;
+  document.body.appendChild(errorMessage);
+
+  errorButton.addEventListener('click', closeMessage, { once:true });
+  window.addEventListener('keydown', escapeKeydown);
+  window.addEventListener('click', onClickMessageForm);
+};
+
 function postSubmitting(evt) {
   evt.preventDefault();
 
@@ -250,23 +269,5 @@ function postSubmitting(evt) {
     );
   }
 }
-
-const showSuccessMessage = () => {
-  activeMessage = successMessage;
-  document.body.appendChild(successMessage);
-
-  successButton.addEventListener('click', closeMessage, { once: true });
-  window.addEventListener('keydown', escapeKeydown);
-  window.addEventListener('click', onClickMessageForm);
-};
-
-const showErrorMessage = () => {
-  activeMessage = errorMessage;
-  document.body.appendChild(errorMessage);
-
-  errorButton.addEventListener('click', closeMessage, { once:true });
-  window.addEventListener('keydown', escapeKeydown);
-  window.addEventListener('click', onClickMessageForm);
-};
 
 uploadFile.addEventListener('change', createNewPost);
