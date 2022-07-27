@@ -52,25 +52,19 @@ const getMoreComments = (comments) => {
 };
 
 const createComments = (comments) => {
-  let commentsHtml = '';
-
+  let allComments = '';
   comments.forEach((comment) => {
-    const tagLi = document.createElement('li');
-    tagLi.classList.add('social__comment');
-    const tagImg = document.createElement('img');
-    tagImg.classList.add('social__picture');
-    tagImg.src = comment.avatar;
-    tagImg.alt = comment.name;
-    tagImg.width = 35;
-    tagImg.height = 35;
-    tagLi.appendChild(tagImg);
-    const tagP = document.createElement('p');
-    tagP.classList.add('social__text');
-    tagP.textContent = comment.message;
-    tagLi.appendChild(tagP);
-    commentsHtml += tagLi;
-  });
-  socialComments.innerHTML = commentsHtml;
+    allComments +=
+      `<li class="social__comment">
+       <img
+          class="social__picture"
+          src="${comment.avatar}"
+          alt="${comment.name}"
+          width="35" height="35">
+       <p class="social__text">${comment.message}</p>
+      </li>`;
+  })
+  socialComments.innerHTML = allComments;
 };
 
 const closeBigPicture = () => {
