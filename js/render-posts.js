@@ -18,9 +18,9 @@ export const renderPosts = (postsData) => {
 
 export const bindPostClickListener = (callback) => {
   pictureBox.addEventListener('click', (evt) => {
-    const samePicture = evt.target.closest(".picture");
+    const samePicture = evt.target.closest('.picture');
     if (samePicture) {
       callback(samePicture.dataset.pictureId);
     }
-  })
+  });
 };

@@ -22,7 +22,7 @@ function getSeveralElementsFromArray(array, quantity) {
   const RANDOM_ELEMENTS = [];
   for (let i = 0; i < quantity; i++) {
     RANDOM_ELEMENTS.push(getRandomElementFromArray(array));
-  };
+  }
 
   return RANDOM_ELEMENTS;
 }
