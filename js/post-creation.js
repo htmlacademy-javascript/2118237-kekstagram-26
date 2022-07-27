@@ -157,11 +157,11 @@ const applySelectedEffect = (evt) => {
       break;
     case FILTER_TYPE.CHROME:
       applyEffectToPost('effects__preview--chrome', FILTER_CSS_VALUE.chrome);
-      effectLevelSlider.noUiSlider.updateOptions(getUpdateSlider());
+      effectLevelSlider.noUiSlider.updateOptions(getUpdateSlider(0,1,1,0.1));
       break;
     case FILTER_TYPE.SEPIA:
       applyEffectToPost('effects__preview--sepia', FILTER_CSS_VALUE.sepia);
-      effectLevelSlider.noUiSlider.updateOptions(getUpdateSlider());
+      effectLevelSlider.noUiSlider.updateOptions(getUpdateSlider(0,1,1,0.1));
       break;
     case FILTER_TYPE.MARVIN:
       applyEffectToPost('effects__preview--marvin', FILTER_CSS_VALUE.marvin);
