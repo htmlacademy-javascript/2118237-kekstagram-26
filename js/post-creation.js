@@ -246,7 +246,7 @@ const showSuccessMessage = () => {
 const showErrorMessage = () => {
   activeMessage = errorMessage;
   document.body.appendChild(errorMessage);
-  errorMessage.style.zIndex = "2";
+  errorMessage.style.zIndex = '2';
   errorButton.addEventListener('click', closeMessage, { once:true });
   window.addEventListener('keydown', onKeydown);
   window.addEventListener('click', onClick);
