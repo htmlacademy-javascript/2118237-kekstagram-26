@@ -28,7 +28,7 @@ const filterPostsRandom = (posts) => {
   const startNumber = 0;
   const finishNumber = posts.length - 1;
   const randomPostsIndexes = [];
-  let counterRandomPhoto = (posts.length < POST_MAX_COUNT) ? posts.length : POST_MAX_COUNT;
+  const counterRandomPhoto = (posts.length < POST_MAX_COUNT) ? posts.length : POST_MAX_COUNT;
 
   for (let i = 0; i < counterRandomPhoto;) {
     const randomIndex = getRandomNumber(startNumber, finishNumber);

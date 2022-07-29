@@ -140,7 +140,7 @@ noUiSlider.create(effectLevelSlider, getUpdateSlider());
 
 effectLevelSlider.noUiSlider.on('update', () => {
   const level = effectLevelSlider.noUiSlider.get();
-    uploadPreview.style.filter = `${currentEffect}(${level}${currentEffectUnitMeasure})`;
+  uploadPreview.style.filter = `${currentEffect}(${level}${currentEffectUnitMeasure})`;
 });
 
 const applySelectedEffect = (evt) => {
