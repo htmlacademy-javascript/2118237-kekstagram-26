@@ -71,12 +71,12 @@ const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   bigPictureCancel.removeEventListener('click', closeBigPicture);
-  window.removeEventListener('keydown', handleKeyDown);
+  window.removeEventListener('keydown', onKeyDown);
   socialCommentsLoader.onclick = null;
   socialCommentsLoader.classList.remove('hidden');
 };
 
-function handleKeyDown(evt) {
+function onKeyDown(evt) {
   if (checkIsEscPressed(evt)) {
     closeBigPicture();
   }
@@ -94,5 +94,5 @@ export const openBigPicture = (post) => {
   hideMoreComments(allComments);
   socialCommentsLoader.onclick = getMoreComments(allComments);
   bigPictureCancel.addEventListener('click', closeBigPicture);
-  window.addEventListener('keydown', handleKeyDown);
+  window.addEventListener('keydown', onKeyDown);
 };

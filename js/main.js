@@ -7,8 +7,7 @@ import { initPostsFilter } from './posts-filter.js';
 getData((posts) => {
   renderPosts(posts);
   bindPostClickListener((postId) => {
-    const POST = posts.find((post) => post.id === Number(postId));
-    openBigPicture(POST);
+    openBigPicture(posts.find((post) => post.id === Number(postId)));
   });
   initPostsFilter(posts);
 });

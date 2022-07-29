@@ -10,22 +10,10 @@ function getRandomNumber(startNumber, finishNumber) {
   return Math.floor(Math.random() * (finishNumber - startNumber + 1) + startNumber);
 }
 
-function getRandomElementFromArray(array) {
-  return array[getRandomNumber(0, array.length - 1)];
-}
-
 function checkStringMaxLength(text, maxLength) {
   return text.length <= maxLength;
 }
 
-function getSeveralElementsFromArray(array, quantity) {
-  const RANDOM_ELEMENTS = [];
-  for (let i = 0; i < quantity; i++) {
-    RANDOM_ELEMENTS.push(getRandomElementFromArray(array));
-  }
-
-  return RANDOM_ELEMENTS;
-}
 export const showMessage = (message) => {
   const div = document.createElement('div');
   div.classList.add('message');
@@ -47,4 +35,4 @@ export const debounce = (callback, timeoutDelay) => {
   };
 };
 
-export { checkIsEscPressed, getRandomNumber, checkStringMaxLength, getRandomElementFromArray, getSeveralElementsFromArray };
+export { checkIsEscPressed, getRandomNumber, checkStringMaxLength };
