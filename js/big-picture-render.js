@@ -52,19 +52,21 @@ const getMoreComments = (comments) => {
 };
 
 const createComments = (comments) => {
-  let allComments = '';
-  comments.forEach((comment) => {
-    allComments +=
-      `<li class="social__comment">
-       <img
-          class="social__picture"
-          src="${comment.avatar}"
-          alt="${comment.name}"
-          width="35" height="35">
-       <p class="social__text">${comment.message}</p>
-      </li>`;
+  const commentFragment = document.createDocumentFragment();
+
+  comments.forEach(({ avatar, name, message }) => {
+
+    const list = '<li class="social__comment"><img class="social__picture"><p class="social__text"></p></li>';
+    socialComments.innerHTML = list;
+
+    const socialComment = bigPicture.querySelector('.social__comment');
+    socialComment.querySelector('.social__picture').src = avatar;
+    socialComment.querySelector('.social__picture').alt = name;
+    socialComment.querySelector('.social__text').textContent = message;
+
+    commentFragment.append(socialComment);
   });
-  socialComments.innerHTML = allComments;
+  socialComments.append(commentFragment);
 };
 
 const closeBigPicture = () => {

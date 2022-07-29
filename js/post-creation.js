@@ -222,6 +222,14 @@ function onKeydown(evt) {
     if (evt.target.matches('input') && evt.target.type === 'text' || evt.target.matches('textarea')) {
       return;
     }
+    if (evt.target.lastChild.className === 'error') {
+      errorMessage.remove();
+      return;
+    }
+    if (evt.target.lastChild.className === 'success') {
+      successMessage.remove();
+      return;
+    }
     closePostCreation();
   }
 }
@@ -238,7 +246,7 @@ const showSuccessMessage = () => {
 const showErrorMessage = () => {
   activeMessage = errorMessage;
   document.body.appendChild(errorMessage);
-
+  errorMessage.style.zIndex = '2';
   errorButton.addEventListener('click', closeMessage, { once:true });
   window.addEventListener('keydown', onKeydown);
   window.addEventListener('click', onClick);
